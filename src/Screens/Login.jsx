@@ -29,9 +29,11 @@ const Login = ({history}) =>{
                 password1: ''
               });
             });
-            isAuth() && isAuth().role === 'admin' 
-            ? history.push('/admin')
-            : history.push('/private')
+            console.log(res.data.token)
+            //isAuth() && isAuth().role === 'admin' 
+            //? history.push('/admin')
+            //: history.push('/private')
+            history.push(`dash/bugreport/${res.data.token}`)
             toast.success(`Hey ${res.data.user.name}, welcome back`)
           })
           .catch(err => {
