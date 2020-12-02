@@ -1,7 +1,5 @@
 import React , {useState,useEffect} from 'react';
-import loginSvg from '../assests/login.svg';
 import {ToastContainer , toast} from 'react-toastify';
-import {authenticate , isAuth} from '../helpers/auth';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
@@ -29,7 +27,7 @@ const BugReport = ({match,history}) =>{
     const handleSubmit = (e) =>{
         e.preventDefault()
         if(headline && description && team && severity){
-            console.log(token,headline,description,team)
+            // console.log(token,headline,description,team)
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bugreport`,{
                 token,headline,description,team,severity
             }).then((res) => {

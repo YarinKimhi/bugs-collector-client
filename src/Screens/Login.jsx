@@ -33,7 +33,7 @@ const Login = ({history}) =>{
             //isAuth() && isAuth().role === 'admin' 
             //? history.push('/admin')
             //: history.push('/private')
-            history.push(`dash/bugreport/${res.data.token}`)
+            history.push(`dash/${res.data.token}`)
             toast.success(`Hey ${res.data.user.name}, welcome back`)
           })
           .catch(err => {
