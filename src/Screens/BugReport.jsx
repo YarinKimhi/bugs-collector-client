@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from 'react';
 import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+// import {Redirect} from 'react-router-dom';
 
 const BugReport = ({match,history}) =>{
     const [fromData , setFromData] = useState({
@@ -9,7 +9,8 @@ const BugReport = ({match,history}) =>{
         headline: '',
         description: '',
         team: '', 
-        severity:''
+        severity:'',
+        status: 'To Do'
     })
     
     useEffect (() =>{
@@ -22,14 +23,14 @@ const BugReport = ({match,history}) =>{
     const handleChange = (text) => e => {
         setFromData({...fromData,[text]:e.target.value})
     }
-    const {token,headline,description,team , severity} = fromData
+    const {token,headline,description,team , severity , status} = fromData
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        if(headline && description && team && severity){
+        if(headline && description && team && severity && status){
             // console.log(token,headline,description,team)
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bugreport`,{
-                token,headline,description,team,severity
+                token,headline,description,team,severity,status
             }).then((res) => {
                 setFromData({
                     ...fromData,
@@ -37,9 +38,11 @@ const BugReport = ({match,history}) =>{
                     headline: '',
                     description: '',
                     team: '',
-                    severity:''
+                    severity:'',
+                    status: 'To Do'
                 })
-                toast.success(res.data.message)
+                //toast.success(res.data.message)
+                history.goBack()
             }).catch(err => {
                 toast.error(err.response.data.error)
             })
@@ -69,7 +72,7 @@ const BugReport = ({match,history}) =>{
                         <label >Team</label>
                         <div className="dropdown">
                             <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/" >
                                 {team}
                             </a>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
@@ -85,8 +88,7 @@ const BugReport = ({match,history}) =>{
                         <div className="form-group ">
                             <textarea className="form-control" id="description" rows="20" 
                             onChange={handleChange('description')} 
-                            value = {description}
-                            >
+                            value = {description}>
                             </textarea>
                         </div>
                     </div>
@@ -94,13 +96,30 @@ const BugReport = ({match,history}) =>{
                         <label >Severity</label>
                         <div className="dropdown">
                             <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/" >
                                 {severity}
                             </a>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                                 <option className="dropdown-item" value={'High'} onClick={handleChange('severity')} >High</option>
                                 <option className="dropdown-item" value={'Medium'} onClick={handleChange('severity')} >Medium</option>
                                 <option className="dropdown-item" value={'Low'} onClick={handleChange('severity')} >Low</option>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className = "row">
+                <div className="col-md-3 mb-1">
+                        <label >Status</label>
+                        <div className="dropdown">
+                            <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/" >
+                                {status}
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                                <option className="dropdown-item" value={'To Do'} onClick={handleChange('status')} >To Do</option>
+                                <option className="dropdown-item" value={'In Progress'} onClick={handleChange('status')} >In Progress</option>
+                                <option className="dropdown-item" value={'Under Review'} onClick={handleChange('status')} >Under Review</option>
+                                <option className="dropdown-item" value={'Done'} onClick={handleChange('status')} >Done</option>
                             </div>
                         </div>
                     </div>

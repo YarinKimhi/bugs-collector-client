@@ -8,6 +8,7 @@ import BugReport from './Screens/BugReport'
 import DashBoard from './Screens/Dashboard'
 import 'react-toastify/dist/ReactToastify.css'
 
+
 ReactDOM.render(
   <BrowserRouter>
   <Switch>
