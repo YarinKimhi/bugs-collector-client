@@ -2,7 +2,7 @@ import React , {useState,useEffect} from 'react';
 import '../bug.css'
 
 
-const BugSearch = ({nameCreator, headline ,description,team,severity,status,search}) =>{
+const BugCardsSearch = ({nameCreator, headline ,description,team,severity,status,search}) =>{
     const [fromData , setFromData] = useState({
         nameCreator, headline ,description,team,severity ,status
     })
@@ -17,7 +17,7 @@ const BugSearch = ({nameCreator, headline ,description,team,severity,status,sear
             <div className="bug">      
             <div class="card-deck mb-3 text-center">
                 <div class="card mb-4 shadow-sm">
-                    <div class="card-header" style = {{backgroundColor: headlineBackColor}}>
+                    <div class="card-header" style = {{backgroundColor: headlineBackColor,overflow:"auto"}}>
                         <h4 class="my-0 font-weight-normal">{headline} - <small class="text-muted">{nameCreator}</small> </h4>
                     </div>
                     <div class="card-body">
@@ -40,5 +40,5 @@ const BugSearch = ({nameCreator, headline ,description,team,severity,status,sear
         )
     }
 }
-export default BugSearch;
+export default BugCardsSearch;
 
