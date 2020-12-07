@@ -42,3 +42,4 @@ const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick}) =>{
     );
 }
 export default BugsCards;
+

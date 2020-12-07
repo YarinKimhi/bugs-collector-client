@@ -3,13 +3,14 @@ import loginSvg from '../assests/login.svg';
 import {ToastContainer , toast} from 'react-toastify';
 import {authenticate , isAuth} from '../helpers/auth';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 
 const Login = ({history}) =>{
     const [fromData , setFromData] = useState({
         email: '',
         password1: ''
     })
+    // const history = useHistory();
     const {email,password1} = fromData
     
     const handleChange = (text) => e => {
@@ -29,11 +30,13 @@ const Login = ({history}) =>{
                 password1: ''
               });
             });
-            if (isAuth() )
-              history.push(`dash/${res.data.token}`)
-            //toast.success(`Hey ${res.data.user.name}, welcome back`)
-          })
-          .catch(err => {
+            if (isAuth()){
+              console.log(res.data)
+              // localStorage.setItem("user",res.data.user)
+              localStorage.setItem("token",res.data.token)
+              history.push(`dash/`)
+            }
+          }).catch(err => {
             toast.error(err.response.data.error)
           })       
         }else{

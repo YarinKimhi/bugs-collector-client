@@ -3,10 +3,10 @@ import '../bug.css'
 
 
 const BugCard = ({id,nameCreator, headline ,description,team,severity,status,handleClick}) =>{
-    const headlineBackColor =
-        (severity === 'High') ? "tomato" : 
-        (severity === 'Medium') ? "lemonchiffon" : 
-        (severity === 'Low') ? "palegreen" : "white"
+    const headlineBackColor = "white"
+        //(severity === 'High') ? "tomato" : 
+        //(severity === 'Medium') ? "lemonchiffon" : 
+        //(severity === 'Low') ? "palegreen" : "white"
     return(
         <>
         <div className="bug">      

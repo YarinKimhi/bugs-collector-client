@@ -3,7 +3,7 @@ import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
 // import {Redirect} from 'react-router-dom';
 
-const BugReport = ({match,history}) =>{
+const BugReport = ({history}) =>{
     const [fromData , setFromData] = useState({
         token: '',
         headline: '',
@@ -14,9 +14,11 @@ const BugReport = ({match,history}) =>{
     })
     
     useEffect (() =>{
-        let token = match.params.token
+        let token = localStorage.getItem("token")
         if(token){
             setFromData({...fromData,token})
+        }else{
+            history.push("/")
         }
     },[])
     
@@ -28,7 +30,6 @@ const BugReport = ({match,history}) =>{
     const handleSubmit = (e) =>{
         e.preventDefault()
         if(headline && description && team && severity && status){
-            // console.log(token,headline,description,team)
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bugreport`,{
                 token,headline,description,team,severity,status
             }).then((res) => {
@@ -41,7 +42,6 @@ const BugReport = ({match,history}) =>{
                     severity:'',
                     status: 'To Do'
                 })
-                //toast.success(res.data.message)
                 history.goBack()
             }).catch(err => {
                 toast.error(err.response.data.error)

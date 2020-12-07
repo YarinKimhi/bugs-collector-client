@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from 'react';
-import {ToastContainer } from 'react-toastify';
 import axios from 'axios';
 //import {Redirect} from 'react-router-dom';
+import {ToastContainer , toast} from 'react-toastify';
 import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/BugsCards.jsx';
@@ -9,7 +9,7 @@ import Chatbox from '../components/Chatbox'
 
 
 
-const Dashboard = ({match,history}) =>{
+const Dashboard = ({history}) =>{
     const [bugs , setBugs] = useState([{
         nameCreator: '',
         headline: '',
@@ -36,19 +36,24 @@ const Dashboard = ({match,history}) =>{
         severity:'',
         status:''
     })
-    
+
     useEffect (() =>{
-        let token = match.params.token
-        if(token){
+        let token = localStorage.getItem("token")
+        console.log(token)
+        let user= JSON.parse(localStorage.getItem("user"))
+        console.log(user)
+        if(!token){
+            history.push(`/`) // need to fix situation
+        }else{
             setToken({token})
+            axios.get(`${process.env.REACT_APP_API_URL}/dash/`
+            ).then(res => {
+                setBugs(res.data.bugs)
+                }).catch((err)=> {
+                    toast.error(err)
+                }) 
         }
-        axios.get(`${process.env.REACT_APP_API_URL}/dash/`
-        ).then(res => {
-            setBugs(res.data.bugs)
-            }).catch((err)=> {
-                console.log(err)
-            }) 
-    },[])
+    },[history])
     
     const handleChange = e => {
        let searchValue = e.target.value
@@ -63,10 +68,10 @@ const Dashboard = ({match,history}) =>{
                 id
             }).then(res=>{
                 setCurrentBug(res.data.bug)
-                //console.log(res.data.bug)
                 let modal = document.getElementById("myModal");
                 let span = document.getElementsByClassName("close")[0];
                 modal.style.display = "block";
+                
 
                 span.onclick = ()=> {
                 modal.style.display = "none";
@@ -81,6 +86,11 @@ const Dashboard = ({match,history}) =>{
             });
         }
     }
+    const signout = ()=> {
+        localStorage.removeItem("token")
+        history.push(`/`)
+    }
+
 
     const {searchFlag,search} = searchData
     const {token} = tokenData
@@ -96,7 +106,7 @@ const Dashboard = ({match,history}) =>{
                 <input className="form-control form-control-dark w-100" type="text" placeholder="Search user or bug headline" aria-label="Search" onChange={handleChange} ></input>
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
-                        <a className="nav-link" href="/">Sign out</a>
+                        <a className="nav-link" href="/" onClick={signout} >Sign out</a>
                     </li>
                 </ul>
             </nav>
@@ -112,7 +122,7 @@ const Dashboard = ({match,history}) =>{
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href= {`/dash/bugreport/${token}`} >
+                            <a className="nav-link active" href= {`/dash/bugreport/`} >
                             <span data-feather="home"></span>
                                 Report new bug <span className="sr-only"></span>  
                             </a>
