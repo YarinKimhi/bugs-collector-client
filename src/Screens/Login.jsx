@@ -31,9 +31,6 @@ const Login = ({history}) =>{
               });
             });
             if (isAuth()){
-              console.log(res.data)
-              // localStorage.setItem("user",res.data.user)
-              localStorage.setItem("token",res.data.token)
               history.push(`dash/`)
             }
           }).catch(err => {

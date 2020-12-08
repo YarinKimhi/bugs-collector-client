@@ -5,7 +5,8 @@ import {ToastContainer , toast} from 'react-toastify';
 import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/BugsCards.jsx';
-import Chatbox from '../components/Chatbox'
+import FullBugInfo from '../components/FullBugInfo'
+import {getCookie ,removeCookie} from '../helpers/auth'
 
 
 
@@ -22,6 +23,13 @@ const Dashboard = ({history}) =>{
     const [tokenData, setToken] = useState({
         token:''
     })
+    const [bugComments , setBugComments] = useState([{
+        user_id: '',
+        bug_id: '',
+        comment: '',
+        time: ''
+    }]
+    )
     const [searchData, setSearchData] = useState({ 
         search:'',
         searchFlag: false
@@ -38,10 +46,8 @@ const Dashboard = ({history}) =>{
     })
 
     useEffect (() =>{
-        let token = localStorage.getItem("token")
-        console.log(token)
+        let token = getCookie('token')
         let user= JSON.parse(localStorage.getItem("user"))
-        console.log(user)
         if(!token){
             history.push(`/`) // need to fix situation
         }else{
@@ -50,8 +56,8 @@ const Dashboard = ({history}) =>{
             ).then(res => {
                 setBugs(res.data.bugs)
                 }).catch((err)=> {
-                    toast.error(err)
-                }) 
+                    console.log(err)
+                })
         }
     },[history])
     
@@ -61,18 +67,19 @@ const Dashboard = ({history}) =>{
        setSearchData({search : searchValue , searchFlag: flag})
     }
 
-    const handleClick = async (e) =>{
+    const handleClick =  (e) =>{
         let id = e.id
         if (id){
-            await axios.post(`${process.env.REACT_APP_API_URL}/dash/bug/`,{
+             axios.post(`${process.env.REACT_APP_API_URL}/dash/bug/`,{
                 id
             }).then(res=>{
                 setCurrentBug(res.data.bug)
-                let modal = document.getElementById("myModal");
+            }).catch((err)=>{
+                console.log(err)
+            });
+            let modal = document.getElementById("myModal");
                 let span = document.getElementsByClassName("close")[0];
                 modal.style.display = "block";
-                
-
                 span.onclick = ()=> {
                 modal.style.display = "none";
                 }
@@ -81,20 +88,26 @@ const Dashboard = ({history}) =>{
                         modal.style.display = "none";
                     }
                 }
+             axios.post(`${process.env.REACT_APP_API_URL}/dash/bug/comments`,{
+                id
+            }).then(res=>{
+                if(res.data !== undefined)
+                    setBugComments(res.data.comments)
             }).catch((err)=>{
-                console.log(err)    
+                console.log(err)
             });
+                
         }
     }
+
     const signout = ()=> {
-        localStorage.removeItem("token")
+        removeCookie("token")
         history.push(`/`)
     }
 
-
     const {searchFlag,search} = searchData
     const {token} = tokenData
-    
+
     return(       
         <div className=''>
              <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -152,10 +165,12 @@ const Dashboard = ({history}) =>{
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Done"  handleClick= {handleClick}/> 
-            <Chatbox currentBug= {currentBug} id="myModal"/>  
+            <FullBugInfo key={currentBug._id} currentBug= {currentBug} comments = {bugComments}   id="myModal"/>  
             </main>
             </div> 
         </div>
     );
   };
 export default Dashboard;
+
+// <FullBugInfo currentBug= {currentBug} comments = {comments}   id="myModal"/>  

@@ -5,9 +5,6 @@ import BugCardsSearch from './BugCardsSearch';
 
 
 const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick}) =>{
-    const [fromData , setFromData] = useState({
-        
-    })
     return(
         <>
         <h4> {status} </h4>

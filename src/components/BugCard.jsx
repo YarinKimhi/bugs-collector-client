@@ -17,6 +17,7 @@ const BugCard = ({id,nameCreator, headline ,description,team,severity,status,han
                 </div>
                 <div className="card-body">
                     <ul className="list-unstyled mt-3 mb-4">
+                    <li>{id}</li>    
                     <li>{description}</li>
                     <li>{team}</li>
                     </ul>
@@ -30,3 +31,5 @@ const BugCard = ({id,nameCreator, headline ,description,team,severity,status,han
 }
 export default BugCard;
 
+
+// 5fc8eecf1a9dd54fd0e145f7

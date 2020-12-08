@@ -2,6 +2,7 @@ import React , {useState,useEffect} from 'react';
 import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
 // import {Redirect} from 'react-router-dom';
+import {getCookie ,removeCookie} from '../helpers/auth'
 
 const BugReport = ({history}) =>{
     const [fromData , setFromData] = useState({
@@ -14,7 +15,7 @@ const BugReport = ({history}) =>{
     })
     
     useEffect (() =>{
-        let token = localStorage.getItem("token")
+        let token = getCookie("token")
         if(token){
             setFromData({...fromData,token})
         }else{
