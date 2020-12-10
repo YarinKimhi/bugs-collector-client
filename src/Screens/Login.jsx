@@ -5,12 +5,12 @@ import {authenticate , isAuth} from '../helpers/auth';
 import axios from 'axios';
 import {Redirect, useHistory} from 'react-router-dom';
 
-const Login = ({history}) =>{
+const Login = () =>{
     const [fromData , setFromData] = useState({
         email: '',
         password1: ''
     })
-    // const history = useHistory();
+    const history = useHistory();
     const {email,password1} = fromData
     
     const handleChange = (text) => e => {
@@ -22,8 +22,8 @@ const Login = ({history}) =>{
         if(email && password1){ 
           axios.post(`${process.env.REACT_APP_API_URL}/login`,{
               email:email,password:password1
-          }).then(res => {
-            authenticate(res,() =>{
+          }).then(res => {   // res will include token and user
+            authenticate(res,() =>{ 
               setFromData({
                 ...fromData,
                 email: '',

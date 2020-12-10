@@ -22,7 +22,7 @@ const BugCard = ({id,nameCreator, headline ,description,team,severity,status,han
                     <li>{team}</li>
                     </ul>
                 </div>    
-                <button type="button" className="btn btn-lg btn-block btn-outline-primary"   onClick={()=>handleClick({id})} >...</button>
+                <button type="button" className="btn btn-lg btn-block btn-outline-primary"  onClick={()=>handleClick({id})} >...</button>
         </div>
         </div>
         </div> 
@@ -32,4 +32,4 @@ const BugCard = ({id,nameCreator, headline ,description,team,severity,status,han
 export default BugCard;
 
 
-// 5fc8eecf1a9dd54fd0e145f7
+// 

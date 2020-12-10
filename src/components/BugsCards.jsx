@@ -4,7 +4,7 @@ import BugCard from './BugCard.jsx';
 import BugCardsSearch from './BugCardsSearch';
 
 
-const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick}) =>{
+const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick,modal}) =>{
     return(
         <>
         <h4> {status} </h4>

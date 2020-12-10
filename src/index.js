@@ -13,10 +13,10 @@ ReactDOM.render(
   <Switch>
     <Route path='/' exact render={props => <Login  {...props}/>} />
     <Route path='/register' exact render={props => <Register {...props}/>} />
-    <Route path='/user/activate/:token' exact render={props => <Activate {...props}/>} />
     <Route path='/dash/bugreport/' exact render={props => <BugReport {...props}/>} />
     <Route path='/dash/' exact render={props => <DashBoard {...props}/>} />
   </Switch>
   </BrowserRouter>,
 document.getElementById('root')
 );
+//<Route path='/user/activate/:token' exact render={props => <Activate {...props}/>} />

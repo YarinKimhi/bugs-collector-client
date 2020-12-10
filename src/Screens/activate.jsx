@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react';
+/*import React , {useState,useEffect} from 'react';
 import authSvg from '../assests/auth.svg';
 import {ToastContainer , toast} from 'react-toastify';
 import {authenticate , isAuth} from '../helpers/auth';
@@ -91,3 +91,4 @@ const Activate = ({match,history}) =>{
   )
 };
 export default Activate;
+*/

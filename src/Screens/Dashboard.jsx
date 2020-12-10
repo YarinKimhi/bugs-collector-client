@@ -5,7 +5,7 @@ import {ToastContainer , toast} from 'react-toastify';
 import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/BugsCards.jsx';
-import FullBugInfo from '../components/FullBugInfo'
+import BugModel from '../components/BugModel'
 import {getCookie ,removeCookie} from '../helpers/auth'
 
 
@@ -20,16 +20,7 @@ const Dashboard = ({history}) =>{
         status:''
     }]
     )
-    const [tokenData, setToken] = useState({
-        token:''
-    })
-    const [bugComments , setBugComments] = useState([{
-        user_id: '',
-        bug_id: '',
-        comment: '',
-        time: ''
-    }]
-    )
+    
     const [searchData, setSearchData] = useState({ 
         search:'',
         searchFlag: false
@@ -49,9 +40,8 @@ const Dashboard = ({history}) =>{
         let token = getCookie('token')
         let user= JSON.parse(localStorage.getItem("user"))
         if(!token){
-            history.push(`/`) // need to fix situation
+            history.push(`/`)
         }else{
-            setToken({token})
             axios.get(`${process.env.REACT_APP_API_URL}/dash/`
             ).then(res => {
                 setBugs(res.data.bugs)
@@ -77,36 +67,30 @@ const Dashboard = ({history}) =>{
             }).catch((err)=>{
                 console.log(err)
             });
-            let modal = document.getElementById("myModal");
+
+           let modal = document.getElementById("myModal");
+           if(modal !== "none"){
                 let span = document.getElementsByClassName("close")[0];
                 modal.style.display = "block";
-                span.onclick = ()=> {
-                modal.style.display = "none";
+                span.onclick = ()=> { //close functionaity
+                    modal.style.display = "none";
                 }
-                window.onclick = (event)=> {
+                window.onclick = (event)=> { //close functionaity
                     if (event.target === modal) {
                         modal.style.display = "none";
                     }
                 }
-             axios.post(`${process.env.REACT_APP_API_URL}/dash/bug/comments`,{
-                id
-            }).then(res=>{
-                if(res.data !== undefined)
-                    setBugComments(res.data.comments)
-            }).catch((err)=>{
-                console.log(err)
-            });
-                
+           }else{
+               toast.error("Something went wrong")
+           }
         }
     }
-
     const signout = ()=> {
         removeCookie("token")
         history.push(`/`)
     }
 
     const {searchFlag,search} = searchData
-    const {token} = tokenData
 
     return(       
         <div className=''>
@@ -129,7 +113,7 @@ const Dashboard = ({history}) =>{
                     <div className="sidebar-sticky pt-3">
                         <ul className="nav flex-column">
                         <li className="nav-item">
-                            <a className="nav-link active" href= {`/dash/${token}`}>
+                            <a className="nav-link active" href= {`/dash/`}>
                             <span data-feather="home"></span>
                                 Dashboard <span className="sr-only">(current)</span> 
                             </a>
@@ -165,12 +149,13 @@ const Dashboard = ({history}) =>{
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Done"  handleClick= {handleClick}/> 
-            <FullBugInfo key={currentBug._id} currentBug= {currentBug} comments = {bugComments}   id="myModal"/>  
+            <div id="myModal" className="modal">
+                <BugModel key={currentBug._id} bugid = {currentBug._id} currentBug= {currentBug}  /> 
+            </div>
             </main>
             </div> 
         </div>
     );
   };
 export default Dashboard;
-
-// <FullBugInfo currentBug= {currentBug} comments = {comments}   id="myModal"/>  
+//

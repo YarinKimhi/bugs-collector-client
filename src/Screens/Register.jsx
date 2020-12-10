@@ -5,7 +5,7 @@ import {authenticate , isAuth} from '../helpers/auth';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
-const Register = () =>{
+const Register = ({history}) =>{
     const [fromData , setFromData] = useState({
         name: '',
         email: '',
@@ -32,7 +32,7 @@ const Register = () =>{
                         password1: '',
                         password2: ''
                     })
-                    toast.success(res.data.message)
+                    history.push('/')
                 }).catch(err => {
                   toast.error(err.response.data.error)
                 })
