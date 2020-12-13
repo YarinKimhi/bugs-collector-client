@@ -1,17 +1,25 @@
 import React , {useState,useEffect} from 'react';
 import '../bug.css'
+import '../chatbox.css'
 
 
-const Comment = ({key ,user_id ,bug_id ,comment ,time }) =>{
+const Comment = ({user_name ,comment ,time }) =>{
+    
+        
     return(
         <>
-            <div>
-                <p>time: {time} </p>
-                <p>name: {user_id} </p>
-                <p>comment: {comment} </p>
-            </div> 
+        <div className="row">
+             <a  alt="Avatar" className="avatar">
+             </a>
+             <p className="meta"> &nbsp; {user_name} - <time>{time}</time></p>
+        </div>    
+        <div className="media-body" > 
+            <p> {comment} </p>
+        </div> 
+        <br></br>
         </>
     );
 }
 export default Comment;
 
+// 

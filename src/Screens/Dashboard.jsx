@@ -6,7 +6,7 @@ import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/BugsCards.jsx';
 import BugModel from '../components/BugModel'
-import {getCookie ,removeCookie} from '../helpers/auth'
+import {getCookie ,removeCookie,removeLocalStorage} from '../helpers/auth'
 
 
 
@@ -72,7 +72,7 @@ const Dashboard = ({history}) =>{
            if(modal !== "none"){
                 let span = document.getElementsByClassName("close")[0];
                 modal.style.display = "block";
-                span.onclick = ()=> { //close functionaity
+                span.onClick = ()=> { //close functionaity
                     modal.style.display = "none";
                 }
                 window.onclick = (event)=> { //close functionaity
@@ -87,6 +87,7 @@ const Dashboard = ({history}) =>{
     }
     const signout = ()=> {
         removeCookie("token")
+        removeLocalStorage("user")
         history.push(`/`)
     }
 
@@ -100,7 +101,8 @@ const Dashboard = ({history}) =>{
                     data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <input className="form-control form-control-dark w-100" type="text" placeholder="Search user or bug headline" aria-label="Search" onChange={handleChange} ></input>
+                <input className="form-control form-control-dark w-100" type="text" placeholder="Search user or bug headline" 
+                aria-label="Search" onChange={handleChange} ></input>
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" href="/" onClick={signout} >Sign out</a>
@@ -149,8 +151,8 @@ const Dashboard = ({history}) =>{
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Done"  handleClick= {handleClick}/> 
-            <div id="myModal" className="modal">
-                <BugModel key={currentBug._id} bugid = {currentBug._id} currentBug= {currentBug}  /> 
+            <div id="myModal" className="modal" >
+                <BugModel key={currentBug._id} currentBug= {currentBug}  /> 
             </div>
             </main>
             </div> 
@@ -158,4 +160,3 @@ const Dashboard = ({history}) =>{
     );
   };
 export default Dashboard;
-//
