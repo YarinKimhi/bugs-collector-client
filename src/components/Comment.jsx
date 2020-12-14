@@ -4,8 +4,7 @@ import '../chatbox.css'
 
 
 const Comment = ({user_name ,comment ,time }) =>{
-    
-        
+           
     return(
         <>
         <div className="row">

@@ -6,10 +6,10 @@ const BugCardsSearch = ({nameCreator, headline ,description,team,severity,status
     const [fromData , setFromData] = useState({
         nameCreator, headline ,description,team,severity ,status
     })
-    const headlineBackColor =
-        (severity === 'High') ? "tomato" : 
-        (severity === 'Medium') ? "lemonchiffon" : 
-        (severity === 'Low') ? "palegreen" : "white"
+   const headlineBackColor = "white"
+       // (severity === 'High') ? "tomato" : 
+       // (severity === 'Medium') ? "lemonchiffon" : 
+       // (severity === 'Low') ? "palegreen" : "white"
     
     if( nameCreator.toLowerCase().startsWith(search.toLowerCase()) || headline.toLowerCase().startsWith(search.toLowerCase()) ) {  
         return(
