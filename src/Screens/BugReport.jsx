@@ -11,7 +11,8 @@ const BugReport = ({history}) =>{
         description: '',
         team: '', 
         severity:'',
-        status: 'New'
+        status: 'New',
+        assign:''
     })
     
     useEffect (() =>{
@@ -26,13 +27,13 @@ const BugReport = ({history}) =>{
     const handleChange = (text) => e => {
         setFromData({...fromData,[text]:e.target.value})
     }
-    const {token,headline,description,team , severity , status} = fromData
+    const {token,headline,description,team , severity , status,assign} = fromData
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        if(headline && description && team && severity && status){
+        if(headline && description && team && severity && status && assign){
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bugreport`,{
-                token,headline,description,team,severity,status
+                token,headline,description,team,severity,status,assign
             }).then((res) => {
                 setFromData({
                     ...fromData,
@@ -41,7 +42,8 @@ const BugReport = ({history}) =>{
                     description: '',
                     team: '',
                     severity:'',
-                    status: 'New'
+                    status: 'New',
+                    assign:''
                 })
                 history.goBack()
             }).catch(err => {
@@ -59,7 +61,7 @@ const BugReport = ({history}) =>{
             <h4 className="mb-3">Bug Report</h4>
             <form onSubmit={handleSubmit} >
                 <div className="row">
-                    <div className="col-md-5 mb-2">
+                    <div className="col-md-5 nb-2 ">
                         <label >Head Line</label>
                         <input 
                             type="text" 
@@ -69,7 +71,7 @@ const BugReport = ({history}) =>{
                             value = {headline}
                         />
                     </div>
-                    <div className="col-md-4 mb-1">
+                    <div className="col-md-1">
                         <label >Team</label>
                         <div className="dropdown">
                             <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
@@ -80,6 +82,18 @@ const BugReport = ({history}) =>{
                                 <option className="dropdown-item" value={'ios'} onClick={handleChange('team')} >ios</option>
                                 <option className="dropdown-item" value={'androied'} onClick={handleChange('team')} >androied</option>
                                 <option className="dropdown-item" value={'other..'} onClick={handleChange('team')} >other..</option>
+                            </div>
+                        </div>
+                    </div>
+                    <div >
+                        <label >Assign To:</label>
+                        <div className="dropdown">
+                            <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/" >
+                                {assign}
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                                <option className="dropdown-item" value={'kiki'} onClick={handleChange('assign')} ></option>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,8 @@
-import React , {useState,useEffect} from 'react';
+import React from 'react';
 import '../bug.css'
 
 
-const BugCardsSearch = ({nameCreator, headline ,description,team,severity,status,search}) =>{
-    const [fromData , setFromData] = useState({
-        nameCreator, headline ,description,team,severity ,status
-    })
+const BugCardsSearch = ({nameCreator, headline ,description,team,severity,status,assign,search}) =>{
    const headlineBackColor = "white"
        // (severity === 'High') ? "tomato" : 
        // (severity === 'Medium') ? "lemonchiffon" : 

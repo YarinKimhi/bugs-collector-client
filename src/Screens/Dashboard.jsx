@@ -17,7 +17,8 @@ const Dashboard = ({history}) =>{
         description:'',
         team: '',
         severity:'',
-        status:''
+        status:'',
+        assign:''
     }]
     )
     
@@ -33,7 +34,11 @@ const Dashboard = ({history}) =>{
         description:'',
         team: '',
         severity:'',
-        status:''
+        status:'',
+        assign:''
+    })
+    const [user,setUser]=useState({
+        name:''
     })
 
     useEffect (() =>{
@@ -41,6 +46,8 @@ const Dashboard = ({history}) =>{
         if(!token){
             history.push(`/`)
         }else{
+            const user = JSON.parse(localStorage.getItem('user'))
+            setUser(user)
             axios.get(`${process.env.REACT_APP_API_URL}/dash/`
             ).then(res => {
                 setBugs(res.data.bugs)
@@ -86,6 +93,7 @@ const Dashboard = ({history}) =>{
     }
 
     const {searchFlag,search} = searchData
+    //const user = JSON.parse(localStorage.getItem('user'))
 
     return(       
         <div className=''>
@@ -141,6 +149,7 @@ const Dashboard = ({history}) =>{
                 </div>
             </div>
             <ToastContainer />
+            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} user={user.name} handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="New" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
