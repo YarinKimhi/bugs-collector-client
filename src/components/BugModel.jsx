@@ -75,7 +75,7 @@ const BugModel = ({currentBug,setBugs,setCurrentBug}) =>{
                             </a>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                                 <option className="dropdown-item" value={'ios'} onClick={handleChange('team')} >ios</option>
-                                <option className="dropdown-item" value={'androied'} onClick={handleChange('team')} >androied</option>
+                                <option className="dropdown-item" value={'android'} onClick={handleChange('team')} >android</option>
                                 <option className="dropdown-item" value={'other..'} onClick={handleChange('team')} >other..</option>
                             </div>
                         </div>
