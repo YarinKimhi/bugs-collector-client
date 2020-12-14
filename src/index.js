@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route,Switch} from 'react-router-dom'
 import Register from './Screens/Register'
-import Activate from './Screens/activate'
 import Login from './Screens/Login'
 import BugReport from './Screens/BugReport'
 import DashBoard from './Screens/Dashboard'
@@ -19,4 +18,5 @@ ReactDOM.render(
   </BrowserRouter>,
 document.getElementById('root')
 );
+// import Activate from './Screens/activate'
 //<Route path='/user/activate/:token' exact render={props => <Activate {...props}/>} />

@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import authSvg from '../assests/auth.svg';
+// import reg from '../assests/auth.svg';
 import {ToastContainer , toast} from 'react-toastify';
 import {authenticate , isAuth} from '../helpers/auth';
 import axios from 'axios';

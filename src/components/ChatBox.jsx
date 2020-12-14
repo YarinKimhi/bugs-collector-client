@@ -16,11 +16,7 @@ const ChatBox = ({bug_id}) =>{
         comment: '',
         time: ''
     }])
-
-    const user = JSON.parse(localStorage.getItem("user"))
-    const user_id = user._id
-
-     
+    
 
     useEffect (() =>{
         if(bug_id !== undefined){
@@ -44,6 +40,8 @@ const ChatBox = ({bug_id}) =>{
 
      const handleSubmit = (e) =>{  
         e.preventDefault()
+        const user = JSON.parse(localStorage.getItem("user"))
+        const user_id = user._id
         if(newComment){ 
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bug/comment`,{
                 user_id,bug_id,commentInfo:newComment.comment
