@@ -16,7 +16,7 @@ const Login = () =>{
     const handleChange = (text) => e => {
         setFromData({...fromData,[text]:e.target.value})
     }
-
+    
     const handleSubmit = (e) =>{
         e.preventDefault()
         if(email && password1){ 
