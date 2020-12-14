@@ -11,7 +11,7 @@ const BugReport = ({history}) =>{
         description: '',
         team: '', 
         severity:'',
-        status: 'To Do'
+        status: 'New'
     })
     
     useEffect (() =>{
@@ -41,7 +41,7 @@ const BugReport = ({history}) =>{
                     description: '',
                     team: '',
                     severity:'',
-                    status: 'To Do'
+                    status: 'New'
                 })
                 history.goBack()
             }).catch(err => {
@@ -117,10 +117,10 @@ const BugReport = ({history}) =>{
                                 {status}
                             </a>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-                                <option className="dropdown-item" value={'To Do'} onClick={handleChange('status')} >To Do</option>
+                                <option className="dropdown-item" value={'New'} onClick={handleChange('status')} >New</option>
                                 <option className="dropdown-item" value={'In Progress'} onClick={handleChange('status')} >In Progress</option>
                                 <option className="dropdown-item" value={'Under Review'} onClick={handleChange('status')} >Under Review</option>
-                                <option className="dropdown-item" value={'Done'} onClick={handleChange('status')} >Done</option>
+                                <option className="dropdown-item" value={'Fixed'} onClick={handleChange('status')} >Fixed</option>
                             </div>
                         </div>
                     </div>

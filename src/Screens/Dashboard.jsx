@@ -38,7 +38,6 @@ const Dashboard = ({history}) =>{
 
     useEffect (() =>{
         let token = getCookie('token')
-        let user= JSON.parse(localStorage.getItem("user"))
         if(!token){
             history.push(`/`)
         }else{
@@ -67,14 +66,9 @@ const Dashboard = ({history}) =>{
             }).catch((err)=>{
                 console.log(err)
             });
-
            let modal = document.getElementById("myModal");
            if(modal !== "none"){
-                let span = document.getElementsByClassName("close")[0];
                 modal.style.display = "block";
-                span.onClick = ()=> { //close functionaity
-                    modal.style.display = "none";
-                }
                 window.onclick = (event)=> { //close functionaity
                     if (event.target === modal) {
                         modal.style.display = "none";
@@ -147,12 +141,17 @@ const Dashboard = ({history}) =>{
                 </div>
             </div>
             <ToastContainer />
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="To Do" handleClick= {handleClick}/>
+            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="New" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Done"  handleClick= {handleClick}/> 
+            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Fixed"  handleClick= {handleClick}/> 
             <div id="myModal" className="modal" >
-                <BugModel key={currentBug._id} currentBug= {currentBug}  /> 
+                <BugModel 
+                    key={currentBug._id}
+                    setBugs={setBugs}   
+                    currentBug= {currentBug}
+                    setCurrentBug={setCurrentBug} 
+                /> 
             </div>
             </main>
             </div> 

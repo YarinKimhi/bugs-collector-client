@@ -4,10 +4,10 @@ import BugCard from './BugCard.jsx';
 import BugCardsSearch from './BugCardsSearch';
 
 
-const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick,modal}) =>{
+const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick}) =>{
     return(
         <>
-        <h4> {status} </h4>
+        <h4> {(bugs)? status : null} </h4>
             <div className="scrolling-wrapper">
             {bugs.map(bug => (bug.status===status && !searchFlag ) ?
                     <BugCard 
