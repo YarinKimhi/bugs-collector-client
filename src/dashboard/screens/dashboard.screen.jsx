@@ -111,8 +111,7 @@ const Dashboard = ({history}) =>{
                     </li>
                 </ul>
             </nav>
-            <div className="container-fluid">
-                <div className="row">
+            <div>
                 <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div className="sidebar-sticky pt-3">
                         <ul className="nav flex-column">
@@ -137,32 +136,63 @@ const Dashboard = ({history}) =>{
                         </ul>
                     </div>
                 </nav>
-            </div>
-            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Dashboard</h2>
-                <div className="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        This week
-                    </button>
-                </div>
-            </div>
-            <ToastContainer />
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} user={user.name} handleClick= {handleClick}/>
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="New" handleClick= {handleClick}/>
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="In Progress" handleClick= {handleClick}/>
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
-            <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Fixed"  handleClick= {handleClick}/> 
-            <div id="myModal" className="modal" >
-                <BugModal 
-                    key={currentBug._id}
-                    setBugs={setBugs}   
-                    currentBug= {currentBug}
-                    setCurrentBug={setCurrentBug} 
-                /> 
-            </div>
-            </main>
+                
+                <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2>Dashboard</h2>
+                        <div className="btn-toolbar mb-2 mb-md-0">
+                            <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                <span data-feather="calendar"></span>
+                                This week
+                            </button>
+                        </div>
+                    </div>
+                    <ToastContainer />
+                    <BugsCards 
+                        bugs ={bugs} 
+                        searchFlag={searchFlag}
+                        searchValue ={search}
+                        user={user.name}
+                        handleClick= {handleClick}
+                    />
+                    <BugsCards 
+                        bugs ={bugs} 
+                        searchFlag={searchFlag} 
+                        searchValue ={search} 
+                        status ="New" 
+                        handleClick= {handleClick}
+                    />
+                    <BugsCards 
+                        bugs ={bugs} 
+                        searchFlag={searchFlag} 
+                        searchValue ={search} 
+                        status ="In Progress" 
+                        handleClick= {handleClick}
+                    />
+                    <BugsCards 
+                        bugs ={bugs} 
+                        searchFlag={searchFlag} 
+                        searchValue ={search} 
+                        status ="Under Review" 
+                        handleClick= {handleClick}
+                    /> 
+                    <BugsCards 
+                        bugs ={bugs}
+                        searchFlag={searchFlag} 
+                        searchValue ={search} 
+                        status ="Fixed"  
+                        handleClick= {handleClick}
+                    /> 
+                    
+                    <div id="myModal" className="modal" >
+                        <BugModal 
+                            key={currentBug._id}
+                            setBugs={setBugs}   
+                            currentBug= {currentBug}
+                            setCurrentBug={setCurrentBug} 
+                        /> 
+                    </div>
+                </main>
             </div> 
         </div>
     );

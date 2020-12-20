@@ -21,7 +21,7 @@ const BugCard = ({id,nameCreator, headline ,description,team,severity,status,ass
                         <li>{team}</li>
                         </ul>
                     </div>    
-                    <button type="button" className="btn btn-lg btn-block btn-outline-primary"  onClick={()=>handleClick({id})} >Update/Chat</button>
+                    <button type="button" className="btn btn-lg btn-block btn-outline-primary"  onClick={()=>handleClick({id})} >...</button>
                 </div>
             </div>
         </div> 
