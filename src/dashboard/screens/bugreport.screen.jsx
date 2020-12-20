@@ -20,7 +20,7 @@ const BugReport = ({history}) =>{
         if(token){
             setFromData({...fromData,token})
         }else{
-            history.push("/")
+            window.location.replace("/");
         }
     },[])
     

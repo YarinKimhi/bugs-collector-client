@@ -44,7 +44,7 @@ const Dashboard = ({history}) =>{
     useEffect (() =>{
         let token = getCookie('token')
         if(!token){
-            history.push(`/`)
+            window.location.replace("/");
         }else{
             const user = JSON.parse(localStorage.getItem('user'))
             setUser(user)
@@ -73,23 +73,23 @@ const Dashboard = ({history}) =>{
             }).catch((err)=>{
                 console.log(err)
             });
-           let modal = document.getElementById("myModal");
-           if(modal !== "none"){
+            let modal = document.getElementById("myModal");
+            if(modal !== "none"){
                 modal.style.display = "block";
                 window.onclick = (event)=> { //close functionaity
                     if (event.target === modal) {
                         modal.style.display = "none";
                     }
                 }
-           }else{
-               toast.error("Something went wrong")
-           }
+            }else{
+                toast.error("Something went wrong")
+            }
         }
     }
     const signout = ()=> {
         removeCookie("token")
         removeLocalStorage("user")
-        history.push(`/`)
+        window.location.replace("/");
     }
 
     const {searchFlag,search} = searchData
