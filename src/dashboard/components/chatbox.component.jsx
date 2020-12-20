@@ -1,6 +1,6 @@
 import React , {useState,useEffect} from 'react';
 import '../bug.css'
-import Comment from './Comment.jsx';
+import Comment from './comment.component';
 import '../chatbox.css';
 import axios from 'axios';
 

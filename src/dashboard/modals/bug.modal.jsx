@@ -1,14 +1,16 @@
 import React ,{useEffect,useState}from 'react';
-import ChatBox from './ChatBox';
+import ChatBox from '../components/chatbox.component';
 import '../dashboard.css'
 import axios from 'axios';
 import {ToastContainer, toast } from 'react-toastify';
-import { getCookie } from '../helpers/auth';
+import { getCookie } from '../../shared/auth';
 
 
-const BugModel = ({currentBug,setBugs,setCurrentBug}) =>{
+const BugModal = ({currentBug,setBugs,setCurrentBug}) =>{
     const token = getCookie("token")
     
+    console.log(currentBug)
+
     const handleChange = (text) => e =>{
         setCurrentBug({...currentBug,[text]:e.target.value})
     }
@@ -150,4 +152,4 @@ const BugModel = ({currentBug,setBugs,setCurrentBug}) =>{
        
     );
 }
-export default BugModel;
+export default BugModal;

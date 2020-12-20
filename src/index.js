@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route,Switch} from 'react-router-dom'
-import Register from './Screens/Register'
-import Login from './Screens/Login'
-import BugReport from './Screens/BugReport'
-import DashBoard from './Screens/Dashboard'
+import Register from '../src/user/register/screens/register'
+import Login from '../src/user/login/screens/login'
+import BugReport from '../src/dashboard/screens/bugreport.screen'
+import DashBoard from '../src/dashboard/screens/dashboard.screen'
 import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.render(

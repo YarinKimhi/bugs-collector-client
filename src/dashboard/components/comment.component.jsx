@@ -8,8 +8,6 @@ const Comment = ({user_name ,comment ,time }) =>{
     return(
         <>
         <div className="row">
-             <a  alt="Avatar" className="avatar">
-             </a>
              <p className="meta"> &nbsp; {user_name} - <time>{time}</time></p>
         </div>    
         <div className="media-body" > 

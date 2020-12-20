@@ -2,7 +2,7 @@ import React , {useState,useEffect} from 'react';
 import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
 // import {Redirect} from 'react-router-dom';
-import {getCookie ,removeCookie} from '../helpers/auth'
+import {getCookie ,removeCookie} from '../../shared/auth'
 
 const BugReport = ({history}) =>{
     const [fromData , setFromData] = useState({

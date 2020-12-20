@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from 'react';
 import '../bug.css'
-import BugCard from './BugCard.jsx';
-import BugCardsSearch from './BugCardsSearch';
+import BugCard from './bugcard.component';
+import BugCardsSearch from './bugsearch.component';
 
 
 const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick, user}) =>{

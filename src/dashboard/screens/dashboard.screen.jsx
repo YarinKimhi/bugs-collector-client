@@ -4,9 +4,9 @@ import axios from 'axios';
 import {ToastContainer , toast} from 'react-toastify';
 import '../bug.css'
 import '../dashboard.css'
-import BugsCards from '../components/BugsCards.jsx';
-import BugModel from '../components/BugModel'
-import {getCookie ,removeCookie,removeLocalStorage} from '../helpers/auth'
+import BugsCards from '../components/bugcards.component'
+import BugModal from '../modals/bug.modal'
+import {getCookie ,removeCookie,removeLocalStorage} from '../../shared/auth'
 
 
 
@@ -155,7 +155,7 @@ const Dashboard = ({history}) =>{
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Under Review" handleClick= {handleClick} /> 
             <BugsCards bugs ={bugs} searchFlag={searchFlag} searchValue ={search} status ="Fixed"  handleClick= {handleClick}/> 
             <div id="myModal" className="modal" >
-                <BugModel 
+                <BugModal 
                     key={currentBug._id}
                     setBugs={setBugs}   
                     currentBug= {currentBug}
