@@ -10,3 +10,11 @@
     width: 20%;
     padding: 4px;   
 }
+
+.h4{
+    font-size: large;
+    font-family: Arial, sans-serif;
+    color:black;
+    padding: 0%;
+    display: inline
+}

@@ -134,3 +134,18 @@ body {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .p1{
+      font-size: medium;
+      font-family: "Times New Roman", Times, serif;
+      color:white;
+      padding: 0%;
+      display: inline
+  }
+  .h2{
+    font-size: x-large;
+    font-family: Arial, sans-serif;
+    color:black;
+    padding: 0%;
+    display: inline
+}

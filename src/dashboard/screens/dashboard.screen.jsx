@@ -7,10 +7,10 @@ import '../dashboard.css'
 import BugsCards from '../components/bugcards.component'
 import BugModal from '../modals/bug.modal'
 import {getCookie ,removeCookie,removeLocalStorage} from '../../shared/auth'
-
-
+import * as Icon from 'react-feather';
 
 const Dashboard = ({history}) =>{
+    
     const [bugs , setBugs] = useState([{
         nameCreator: '',
         headline: '',
@@ -96,15 +96,15 @@ const Dashboard = ({history}) =>{
     //const user = JSON.parse(localStorage.getItem('user'))
 
     return(       
-        <div className=''>
+        <div style={{backgroundColor: "rgb(230,230,230)"}}>
              <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">Bug Controller</a>
+                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3 " style={{backgroundColor: "rgb(40,40,40)"}} href="/">Bug Controller</a>
                 <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" 
                     data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <input className="form-control form-control-dark w-100" type="text" placeholder="Search user or bug headline" 
-                aria-label="Search" onChange={handleChange} ></input>
+                    aria-label="Search" onChange={handleChange} ></input>
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" href="/" onClick={signout} >Sign out</a>
@@ -113,24 +113,30 @@ const Dashboard = ({history}) =>{
             </nav>
             <div>
                 <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div className="sidebar-sticky pt-3">
+                    <div className="sidebar-sticky" style={{backgroundImage:"linear-gradient(#3AA655, #6CA67C)"}}>
                         <ul className="nav flex-column">
                         <li className="nav-item">
-                            <a className="nav-link active" href= {`/dash/`}>
-                            <span data-feather="home"></span>
-                                Dashboard <span className="sr-only">(current)</span> 
+                            <a className="nav-link active" href= {`/dash/`} > 
+                            <p class="p1" > <Icon.Home size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Dashboard </p>
+                            <span className="sr-only">(current)</span> 
                             </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href= {`/dash/bugreport/`} >
-                            <span data-feather="home"></span>
-                                Report new bug <span className="sr-only"></span>  
+                            <p className="p1" > <Icon.File size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Report new Bug </p>
+                            <span className="sr-only"></span>  
                             </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="/">
-                            <span data-feather="home"></span>
-                                Stats <span className="sr-only"></span>  
+                            <p className="p1" > <Icon.User size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Profile </p>
+                            <span className="sr-only"></span>  
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link active" href="/">
+                            <p className="p1" > <Icon.BarChart2 size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Stats </p>
+                            <span className="sr-only"></span>  
                             </a>
                         </li>
                         </ul>
@@ -139,16 +145,12 @@ const Dashboard = ({history}) =>{
                 
                 <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h2>Dashboard</h2>
+                        <h2 className="h2">Dashboard</h2>
                         <div className="btn-toolbar mb-2 mb-md-0">
-                            <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                <span data-feather="calendar"></span>
-                                This week
-                            </button>
                         </div>
                     </div>
                     <ToastContainer />
-                    <BugsCards 
+                    <BugsCards
                         bugs ={bugs} 
                         searchFlag={searchFlag}
                         searchValue ={search}
@@ -183,7 +185,6 @@ const Dashboard = ({history}) =>{
                         status ="Fixed"  
                         handleClick= {handleClick}
                     /> 
-                    
                     <div id="myModal" className="modal" >
                         <BugModal 
                             key={currentBug._id}

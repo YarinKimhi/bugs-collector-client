@@ -8,7 +8,7 @@ const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick, user}) =>
     if(user){
         return(
             <>
-                <h4> {(bugs)? "Assigned to you:" : null} </h4>
+                <h4 className="h4" style={{Te:"center"}}> {(bugs)? "Assigned to you" : null} </h4>
                 <div className="scrolling-wrapper">
                 {bugs.map(bug => ( !searchFlag  && bug.assign === user) ?
                         <BugCard 
@@ -43,7 +43,7 @@ const BugsCards = ({bugs ,searchFlag ,searchValue ,status,handleClick, user}) =>
     }else{
         return(
             <>
-            <h4> {(bugs)? status : null} </h4>
+            <h4 className="h4"> {(bugs)? status : null} </h4>
                 <div className="scrolling-wrapper">
                 {bugs.map(bug => (bug.status===status && !searchFlag ) ?
                         <BugCard 
