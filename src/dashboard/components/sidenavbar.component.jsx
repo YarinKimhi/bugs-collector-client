@@ -24,7 +24,7 @@ const SideNavbar = () =>{
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="/">
+                            <a className="nav-link active" href={`/dash/stats/`}>
                             <p className="p1" > <Icon.BarChart2 size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Stats </p>
                             <span className="sr-only"></span>  
                             </a>

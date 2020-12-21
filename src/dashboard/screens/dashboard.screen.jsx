@@ -1,12 +1,11 @@
 import React , {useState,useEffect} from 'react';
 import axios from 'axios';
-//import {Redirect} from 'react-router-dom';
 import {ToastContainer , toast} from 'react-toastify';
 import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/bugcards.component'
 import BugModal from '../modals/bug.modal'
-import {getCookie ,removeCookie,removeLocalStorage,signout} from '../../shared/auth'
+import {getCookie ,signout} from '../../shared/auth'
 import Navbar from '../components/navbar.component'
 import SideNavbar from '../components/sidenavbar.component';
 

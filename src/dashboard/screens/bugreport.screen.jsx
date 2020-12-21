@@ -47,7 +47,7 @@ const BugReport = ({history}) =>{
         if(headline && description && team && severity && status && assign){
             axios.post(`${process.env.REACT_APP_API_URL}/dash/bugreport`,{
                 token,headline,description,team,severity,status,assign
-            }).then((res) => {
+            }).then(() => {
                 setFromData({
                     ...fromData,
                     token: '',
