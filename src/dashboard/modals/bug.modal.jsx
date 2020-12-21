@@ -9,8 +9,6 @@ import { getCookie } from '../../shared/auth';
 
 const BugModal = ({currentBug,setBugs,setCurrentBug}) =>{
     const token = getCookie("token")
-    
-    console.log(currentBug)
 
     const handleChange = (text) => e =>{
         setCurrentBug({...currentBug,[text]:e.target.value})

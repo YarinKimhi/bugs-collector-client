@@ -42,9 +42,10 @@ export const authenticate = (response, next) => {
     next()
 }
 
-export const signout = (next) => {
+export const signout = () => {
     removeCookie('token')
     removeLocalStorage('user')
+    window.location.replace("/");
 }
 
 export const isAuth = () =>{

@@ -6,8 +6,9 @@ import '../bug.css'
 import '../dashboard.css'
 import BugsCards from '../components/bugcards.component'
 import BugModal from '../modals/bug.modal'
-import {getCookie ,removeCookie,removeLocalStorage} from '../../shared/auth'
-import * as Icon from 'react-feather';
+import {getCookie ,removeCookie,removeLocalStorage,signout} from '../../shared/auth'
+import Navbar from '../components/navbar.component'
+import SideNavbar from '../components/sidenavbar.component';
 
 const Dashboard = ({history}) =>{
     
@@ -86,63 +87,15 @@ const Dashboard = ({history}) =>{
             }
         }
     }
-    const signout = ()=> {
-        removeCookie("token")
-        removeLocalStorage("user")
-        window.location.replace("/");
-    }
+    
 
     const {searchFlag,search} = searchData
-    //const user = JSON.parse(localStorage.getItem('user'))
 
     return(       
         <div style={{backgroundColor: "rgb(230,230,230)"}}>
-             <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3 " style={{backgroundColor: "rgb(40,40,40)"}} href="/">Bug Controller</a>
-                <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" 
-                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <input className="form-control form-control-dark w-100" type="text" placeholder="Search user or bug headline" 
-                    aria-label="Search" onChange={handleChange} ></input>
-                <ul className="navbar-nav px-3">
-                    <li className="nav-item text-nowrap">
-                        <a className="nav-link" href="/" onClick={signout} >Sign out</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar handleChange={handleChange} signout={signout} searchbar = {true}/>
             <div>
-                <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div className="sidebar-sticky" style={{backgroundImage:"linear-gradient(#3AA655, #6CA67C)"}}>
-                        <ul className="nav flex-column">
-                        <li className="nav-item">
-                            <a className="nav-link active" href= {`/dash/`} > 
-                            <p class="p1" > <Icon.Home size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Dashboard </p>
-                            <span className="sr-only">(current)</span> 
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" href= {`/dash/bugreport/`} >
-                            <p className="p1" > <Icon.File size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Report new Bug </p>
-                            <span className="sr-only"></span>  
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" href="/">
-                            <p className="p1" > <Icon.User size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Profile </p>
-                            <span className="sr-only"></span>  
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" href="/">
-                            <p className="p1" > <Icon.BarChart2 size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Stats </p>
-                            <span className="sr-only"></span>  
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                </nav>
-                
+                <SideNavbar/>
                 <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h2 className="h2">Dashboard</h2>
@@ -150,41 +103,56 @@ const Dashboard = ({history}) =>{
                         </div>
                     </div>
                     <ToastContainer />
-                    <BugsCards
-                        bugs ={bugs} 
-                        searchFlag={searchFlag}
-                        searchValue ={search}
-                        user={user.name}
-                        handleClick= {handleClick}
-                    />
-                    <BugsCards 
-                        bugs ={bugs} 
-                        searchFlag={searchFlag} 
-                        searchValue ={search} 
-                        status ="New" 
-                        handleClick= {handleClick}
-                    />
-                    <BugsCards 
-                        bugs ={bugs} 
-                        searchFlag={searchFlag} 
-                        searchValue ={search} 
-                        status ="In Progress" 
-                        handleClick= {handleClick}
-                    />
-                    <BugsCards 
-                        bugs ={bugs} 
-                        searchFlag={searchFlag} 
-                        searchValue ={search} 
-                        status ="Under Review" 
-                        handleClick= {handleClick}
-                    /> 
-                    <BugsCards 
-                        bugs ={bugs}
-                        searchFlag={searchFlag} 
-                        searchValue ={search} 
-                        status ="Fixed"  
-                        handleClick= {handleClick}
-                    /> 
+                    <div className="bugs-box">
+                        <div className="title"> Assigned to you </div>
+                            <BugsCards
+                                bugs ={bugs} 
+                                searchFlag={searchFlag}
+                                searchValue ={search}
+                                user={user.name}
+                                handleClick= {handleClick}
+                            />
+                    </div>
+                    <div className="bugs-box">
+                        <div className="title"> New </div>
+                            <BugsCards 
+                                bugs ={bugs} 
+                                searchFlag={searchFlag} 
+                                searchValue ={search} 
+                                status ="New" 
+                                handleClick= {handleClick}
+                            />
+                    </div>
+                    <div className="bugs-box">
+                        <div className="title"> In Progress </div>
+                            <BugsCards 
+                                bugs ={bugs} 
+                                searchFlag={searchFlag} 
+                                searchValue ={search} 
+                                status ="In Progress" 
+                                handleClick= {handleClick}
+                            />
+                    </div>
+                    <div className="bugs-box">
+                        <div className="title"> Under Review </div>
+                            <BugsCards 
+                                bugs ={bugs} 
+                                searchFlag={searchFlag} 
+                                searchValue ={search} 
+                                status ="Under Review" 
+                                handleClick= {handleClick}
+                            /> 
+                    </div>
+                    <div className="bugs-box">
+                        <div className="title"> Fixed </div>
+                            <BugsCards 
+                                bugs ={bugs}
+                                searchFlag={searchFlag} 
+                                searchValue ={search} 
+                                status ="Fixed"  
+                                handleClick= {handleClick}
+                            /> 
+                    </div>
                     <div id="myModal" className="modal" >
                         <BugModal 
                             key={currentBug._id}

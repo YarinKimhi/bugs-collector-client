@@ -70,7 +70,6 @@ const ChatBox = ({bug_id}) =>{
                             <div className="ps-container ps-theme-default ps-active-y" id="chat-content" style={{overflow: 'auto'}} >
                                 <div className="media media-chat"> 
                                     <div className="media-body" >
-                                    <div>
                                         {(bugComments !== "undefined")? bugComments.map(comment => 
                                                 <Comment 
                                                     key={comment.id} 
@@ -81,7 +80,6 @@ const ChatBox = ({bug_id}) =>{
                                                     user_name={comment.user_name}
                                                 />
                                             ):null} 
-                                        </div> 
                                     </div>
                                 </div>
                             </div>
