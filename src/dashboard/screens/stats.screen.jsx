@@ -2,9 +2,10 @@ import React , {useState,useEffect} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import {ToastContainer , toast} from 'react-toastify';
-import {getCookie ,removeCookie,removeLocalStorage,signout,isAuth} from '../../shared/auth'
+import {getCookie ,signout,isAuth} from '../../shared/auth'
 import Navbar from '../components/navbar.component'
 import SideNavbar from '../components/sidenavbar.component';
+import Chart from '../components/chart.component'
 
 
 const Stats = ()=>{
@@ -53,12 +54,30 @@ const Stats = ()=>{
         }
     },[])
 
-    console.log(data)
-    return(
-        <div>
-            {isAuth() ? <Redirect to='/dash/stats' /> : <Redirect to='/' />}
-            
+    const styles = {
+        fontFamily: 'sans-serif',
+        textAlign: 'center',
+      };
 
+    return(
+        <div style={{backgroundColor: "rgb(230,230,230)"}}>
+        {isAuth() ? <Redirect to='/dash/stats' /> : <Redirect to='/' />}
+        
+        <Navbar signout={signout}/>
+            <div>
+                <SideNavbar/>
+                <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2 className="h2">Stats</h2>
+                        <div className="btn-toolbar mb-2 mb-md-0">
+                        </div>
+                    </div>
+                    <ToastContainer />
+                    <div style={styles}>
+                        <Chart data ={data} />
+                    </div>
+                </main>    
+            </div>    
         </div>
         
     );
