@@ -1,5 +1,5 @@
 import React from 'react';
-import '../bug.css'
+import './bug.css'
 
 
 const BugCard = ({id,nameCreator, headline ,description,team,severity,status,assign,search,searchFlag,handleClick}) =>{

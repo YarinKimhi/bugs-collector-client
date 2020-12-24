@@ -1,7 +1,6 @@
 import React ,{useEffect,useState}from 'react';
-import ChatBox from '../components/chatbox.component';
-import '../dashboard.css'
-import '../chatbox.css'
+import ChatBox from '../../main/components/ChatBox/chatbox.component'
+import './bug.modal.css'
 import axios from 'axios';
 import {ToastContainer, toast } from 'react-toastify';
 import { getCookie } from '../../shared/auth';

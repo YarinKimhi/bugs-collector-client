@@ -1,7 +1,6 @@
 import React , {useState,useEffect} from 'react';
-import '../bug.css'
-import Comment from './comment.component';
-import '../chatbox.css';
+import Comment from '../Comment/comment.component';
+import './chatbox.css';
 import axios from 'axios';
 
 const ChatBox = ({bug_id}) =>{

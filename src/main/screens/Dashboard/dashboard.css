@@ -178,3 +178,16 @@ body {
   text-align: center;
   vertical-align: middle;
 }
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.bug {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 20%;
+  padding: 4px;   
+}

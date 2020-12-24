@@ -1,6 +1,5 @@
-import React , {useState,useEffect} from 'react';
-import '../bug.css'
-import BugCard from './bugcard.component';
+import React from 'react';
+import BugCard from '../BugCard/bugcard.component';
 
 
 

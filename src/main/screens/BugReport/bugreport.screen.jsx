@@ -1,10 +1,9 @@
 import React , {useState,useEffect} from 'react';
 import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
-// import {Redirect} from 'react-router-dom';
-import {getCookie ,removeCookie, signout} from '../../shared/auth'
-import SideNavbar from '../components/sidenavbar.component';
-import Navbar   from '../components/navbar.component';
+import {getCookie , signout} from '../../../shared/auth'
+import SideNavbar from '../../components/SideNavBar/sidenavbar.component';
+import Navbar   from '../../components/Navbar/navbar.component';
 
 const BugReport = ({history}) =>{
     const [fromData , setFromData] = useState({

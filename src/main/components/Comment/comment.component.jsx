@@ -1,6 +1,4 @@
-import React , {useState,useEffect} from 'react';
-import '../bug.css'
-import '../chatbox.css'
+import React  from 'react';
 
 
 const Comment = ({user_name ,comment ,time }) =>{

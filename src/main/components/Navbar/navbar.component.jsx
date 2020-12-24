@@ -1,4 +1,4 @@
-import SearchBar from './searchbar.component'
+import SearchBar from '../SearchBar/searchbar.component'
  
 const Navbar = ({signout,handleChange, searchbar})=>{
     return(
