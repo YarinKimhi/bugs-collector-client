@@ -1,5 +1,5 @@
 import * as Icon from 'react-feather';
-
+import './sidenavbar.css'
 const SideNavbar = () =>{
     return(
         <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -18,7 +18,7 @@ const SideNavbar = () =>{
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="/">
+                            <a className="nav-link active" href={`/dash/profile/`}>
                             <p className="p1" > <Icon.User size={16} style={{display: "inline", verticalAlign:"text-bottom"}}/> Profile </p>
                             <span className="sr-only"></span>  
                             </a>

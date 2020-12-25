@@ -8,6 +8,7 @@ import DashBoard from '../src/main/screens/Dashboard/dashboard.screen'
 import 'react-toastify/dist/ReactToastify.css'
 import PrivateRoute from '../src/user/login/components/private.component'
 import Stats from '../src/main/screens/Stats/stats.screen'
+import Profile from '../src/main/screens/Profile/profile.screen'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Route path='/' exact render={props => <Login  {...props}/>} />
     <Route path='/register' exact render={props => <Register {...props}/>} />
     <PrivateRoute path="/dash/stats/" component={Stats} />
+    <PrivateRoute path="/dash/profile/" component={Profile} />
     <PrivateRoute path="/dash/bugreport/" component={BugReport} />
     <PrivateRoute path="/dash/" component={DashBoard} />
   </Switch>
