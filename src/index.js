@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route,Switch} from 'react-router-dom'
 import Register from '../src/user/register/screens/register'
 import Login from '../src/user/login/screens/login'
-import BugReport from '../src/dashboard/screens/bugreport.screen'
-import DashBoard from '../src/dashboard/screens/dashboard.screen'
+import BugReport from '../src/main/screens/BugReport/bugreport.screen'
+import DashBoard from '../src/main/screens/Dashboard/dashboard.screen'
 import 'react-toastify/dist/ReactToastify.css'
 import PrivateRoute from '../src/user/login/components/private.component'
-import Stats from '../src/dashboard/screens/stats.screen'
+import Stats from '../src/main/screens/Stats/stats.screen'
 
 ReactDOM.render(
   <BrowserRouter>

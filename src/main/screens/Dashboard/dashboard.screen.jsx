@@ -2,7 +2,7 @@ import React , {useState,useEffect} from 'react';
 import axios from 'axios';
 import {ToastContainer , toast} from 'react-toastify';
 
-import '../dashboard.css'
+import './dashboard.css'
 import BugsCards from '../../components/BugCards/bugcards.component'
 import BugModal from '../../modals/bug.modal'
 import {getCookie ,signout} from '../../../shared/auth'
