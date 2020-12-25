@@ -66,7 +66,7 @@ const BugModal = ({currentBug,setBugs,setCurrentBug}) =>{
                             value = {currentBug.headline}
                         />
                     </div>
-                    <div className="col-md-4 mb-1">
+                    <div className="col-md-3 mb-1">
                         <label >Team</label>
                         <div className="dropdown">
                             <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
@@ -80,7 +80,7 @@ const BugModal = ({currentBug,setBugs,setCurrentBug}) =>{
                             </div>
                         </div>
                     </div>
-                    <div >
+                    <div className="col-md-3 mb-1">
                         <label >Assign To:</label>
                         <div className="dropdown">
                             <a className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" 
