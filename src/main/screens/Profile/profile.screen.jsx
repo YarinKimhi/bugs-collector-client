@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from 'react';
 import {ToastContainer , toast} from 'react-toastify';
 import axios from 'axios';
-import {getCookie , signout} from '../../../shared/auth'
+import {removeCookie , signout,authenticate} from '../../../shared/auth'
 import SideNavbar from '../../components/SideNavBar/sidenavbar.component';
 import Navbar   from '../../components/Navbar/navbar.component';
 import './profile.css'
@@ -13,35 +13,37 @@ const Profile = () =>{
     const [profileData ,  setProfileData] = useState(
         {
             name:user.name,
-            email:user.email,
             password:'',
             confirmpassword:''
         }
     )
-    useEffect (() =>{
+    /*useEffect (() =>{
         let token = getCookie("token")
         if(token){
-    
+            
 
         }else{
             window.location.replace("/");
         }
-    },[])
+    },[]) */
 
     
     const handleChange = (text) => e => {
         setProfileData({...profileData,[text]:e.target.value})
     }
-    const {name,email,password,confirmpassword} =profileData
+
+    const {name,password,confirmpassword} =profileData
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        //console.log("submited")
         if(password === confirmpassword ){
             axios.post(`${process.env.REACT_APP_API_URL}/update/`,{
-                id:user._id ,name,email,password,confirmpassword
+                id:user._id ,name,password,confirmpassword
             }).then(res => {
-                console.log(res)
+                authenticate(res,()=>{
+                    console.log("succes")
+                });
+                toast.success(res.data.message)
             }).catch(err => {
                 toast.error(err.response.data.error)
             })
@@ -49,7 +51,7 @@ const Profile = () =>{
             toast.error('Passwords missmatch ,please try again')
         }
     }
-    console.log(profileData)
+
     return(       
         <div style={{backgroundColor: "rgb(230,230,230)"}}>
             <Navbar handleChange={handleChange} signout={signout} searchbar = {true}/>

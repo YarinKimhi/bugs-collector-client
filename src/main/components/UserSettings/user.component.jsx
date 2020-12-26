@@ -3,16 +3,10 @@ const User = ({user,handleChange,handleSubmit})=>{
     return(
         <div className="user-box ">
             <form className="row" onSubmit={handleSubmit} >
-                <div className="col-md-6">
+                <div className="col-md-12">
                     <div className="form-group">
                         <label >Full Name</label>
                         <input className="form-control" type="text" value={user.name} onChange={handleChange('name')} required=""/>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="form-group">
-                        <label >E-mail Address</label>
-                        <input className="form-control" type="email"  value={user.email} onChange={handleChange('email')} disabled=""/>
                     </div>
                 </div>
                 <div className="col-md-6">
